@@ -1,0 +1,373 @@
+body, html{
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+ul,li{
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+label{
+  margin: 0;
+  padding: 0;
+}
+
+.game-info__header{
+  height: 100vh;
+  background: url(img/bg.webp) center center;
+  background-size: cover;
+}
+
+.screenshots{
+  max-width: 100%;
+  padding: 0 40px;
+}
+
+.gallery__image{
+  padding: 10px;
+  max-width: 100%;
+}
+
+.one-screen{
+  height: 100vh;
+}
+
+#rules{
+  background: #F58F84;
+}
+.game-info__nav{
+  background: #fff;
+  font-weight: bold;
+}
+.game-info .game-info__nav .link__rules{
+  color: #F58F84;
+}
+#screenshots{
+  background: #9B59B6;
+}
+.game-info .game-info__nav .link__screenshots{
+  color: #9B59B6;
+}
+#contacts{
+  background: #2ABB9B;
+}
+.game-info .game-info__nav .link__contacts{
+  color: #2ABB9B;
+}
+
+.rules__list li{
+  list-style-type: disc;
+  font-size: 25px;
+}
+
+.about__text{
+  font-size: 30px;
+}
+.about__header{
+  font-size: 40px;
+  font-weight: bold;
+}
+.about__btn{
+  padding: 7px 25px;
+  font-size: 25px;
+  background: #F58F84;
+  border-radius: 25px;
+  color: #000;
+  transition: .3s;
+}
+.about__btn:hover{
+  text-decoration: none;
+  color: #000;
+  background: #F62459;
+}
+
+#about, #rules{
+  font-family: 'Amatic SC', cursive;
+  font-weight: bold;
+}
+
+.social__link{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  color: #000;
+  font-size: 25px;
+}
+.social__link i{
+  font-size: 40px;
+  margin-bottom: 1rem;
+}
+.social__link:hover{
+  color: #000;
+  text-decoration: none;
+}
+
+.section__start{
+  background: #9B59B6;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: 0;
+  transition: 1s;
+  z-index: 10;
+}
+.form-start{
+  background: #fff;
+  padding: 3rem;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid #000;
+}
+.form-start__label{
+  font-family: 'Amatic SC', cursive;
+  font-weight: bold;
+  font-size: 30px;
+}
+.form-start__input{
+  padding: 8px 20px;
+  border-radius: 10px;
+  border: 2px solid #000;
+}
+
+.battleground{
+  display: flex;
+  justify-content: space-between;
+  height: 100vh;
+  background: url(img/bg.webp) center center;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+}
+
+.player-side{
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+}
+.enemy-side{
+  width: 40%;
+}
+
+.battleground__info{
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.enemy__name{
+  text-align: right;
+}
+
+.battleground__name{
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  font-family: 'Amatic SC', cursive;
+  font-weight: bold;
+  font-size: 30px;
+}
+.health-bar__wrapper{
+  width: 100%;
+  border: 4px solid #fff;
+  border-radius: 4px;
+}
+.player__helthpoints,
+.enemy__healthpoints{
+  display: block;
+  height: 10px;
+  background: red;
+  transition: .3s;
+}
+
+.battleground__level{
+  position: absolute;
+  left: 50%;
+  top: 5%;
+  transform: translateX(-50%);
+  font-family: 'Amatic SC', cursive;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.avatar{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.player__avatar{
+  flex: 1;
+}
+
+.avatar__body{
+  margin-left: -60px;
+}
+
+.avatar__arm{
+  position: absolute;
+  right: 16%;
+  top: 14%;
+}
+
+.player__abilities{
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.player__abitity{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ability-icon{
+  width: 4rem;
+}
+
+.ability__title{
+  font-family: 'Amatic SC', cursive;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.player__ability-btn{
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.enemy__body{
+  margin-right: -60px;
+}
+
+.enemy__arm{
+  position: absolute;
+  left: 16%;
+  top: 14%;
+}
+
+/* style for modal */
+
+.modal{
+  font-family: 'Amatic SC', cursive;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.modal-task__input{
+  border: 2px solid #000;
+  border-radius: 5px;
+  margin-left: 1rem;
+  padding-left: 1rem;
+}
+.modal-title{
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.btn--abilities{
+  font-size: 1.3rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+  background: #fff;
+}
+.btn--abilities:not(:last-child){
+  margin-right: 1rem;
+}
+.modal-content{
+  background: #2ABB9B;
+}
+
+/* leaderboard */
+.leaderboard{
+  position: absolute;
+  top: -100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #2ABB9B;
+  transition: .3s;
+}
+
+.leaderboard__inner{
+  padding: 1rem 2rem;
+  background: #fff;
+  border-radius: 5px;
+  font-family: 'Amatic SC', cursive;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.leaderboard__header{
+  margin-bottom: 1rem;
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+}
+.leaderboard__result{
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+.leaderboard__score{
+  text-align: center;
+}
+#leaderboard__table{
+  border: 2px solid #000;
+  width: 100%
+}
+#leaderboard__table td{
+  border: 2px solid #000;
+  padding: 5px;
+}
+
+.enemy__head,
+.avatar__head{
+  position: relative;
+  animation: headshake 1s infinite linear;
+}
+
+@keyframes attack{
+  10%{transform: rotate(10deg); top: -10px}
+  50%{transform: rotate(-40deg); top: 133px}
+  90%{transform: rotate(0deg); top: 50px}
+}
+
+@keyframes attackPlayer{
+  10%{transform: rotate(-50deg); top: -10px}
+  50%{transform: rotate(40deg); top: 133px}
+  90%{transform: rotate(0deg); top: 50px}
+}
+
+@keyframes headshake{
+  0%{top: 0px}
+  50%{top: -6px}
+  100%{top: 0px}
+}
+
+@keyframes healAnimation{
+  10%{transform: rotateY(-26deg)}
+  30%{transform: rotateY(26deg)}
+  50%{transform: rotateY(-26deg)}
+  70%{transform: rotateY(26deg)}
+  100%{transform: rotateY(0deg)}
+}

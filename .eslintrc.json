@@ -1,0 +1,12 @@
+{
+  "extends": "airbnb-base",
+  "env": {
+    "browser": true,
+    "node": true,
+    "jasmine": true
+  },
+  "rules": {
+    "prefer-destructuring": ["error", {"object": true, "array": false}],
+    "class-methods-use-this": ["error", { "exceptMethods": ["render", "createDivWithClass"] }]
+  }
+}
