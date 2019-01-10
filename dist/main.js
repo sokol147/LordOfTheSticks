@@ -132,7 +132,7 @@ function () {
     key: "hideNameRequestForm",
     value: function hideNameRequestForm() {
       var nameRequestFrom = document.querySelector('.section__start');
-      nameRequestFrom.style.top = '-1000px';
+      nameRequestFrom.style.top = '-10000px';
     }
   }, {
     key: "render",
@@ -213,9 +213,9 @@ function () {
       }
 
       function enemyNameGenerator() {
-        var firstName = ['Ужасный', 'Злобный', 'Сопливый'];
-        var middleName = ['Огр', 'Гном', 'Гоблин'];
-        var lastName = ['Том', 'Макс', 'Дима'];
+        var firstName = ['Ужасный', 'Злобный', 'Сопливый', 'Абсолютный', 'Безнадежный', 'Безрассудный', 'Внушительный', 'Горький'];
+        var middleName = ['Огр', 'Гном', 'Гоблин', 'Кракен', 'Йети', 'Вампир', ' Землелюд'];
+        var lastName = ['Том', 'Макс', 'Дима', 'Василий', 'Константин', 'Курлык'];
         var fullName = "".concat(random(firstName), " ").concat(random(middleName), " ").concat(random(lastName));
         return fullName;
       }
@@ -239,6 +239,8 @@ function () {
       var enemySide = document.querySelector('.enemy-side');
       var enemyAvatar = document.createElement('div');
       enemyAvatar.setAttribute('class', 'avatar enemy__avatar');
+      var enemyAvatarInner = document.createElement('div');
+      enemyAvatarInner.setAttribute('class', 'enemy__avatar--inner avatar__inner');
       enemyAvatar.innerHTML = '';
 
       function random(arr) {
@@ -258,11 +260,12 @@ function () {
       var enemyArms = document.createElement('div');
       enemyArms.setAttribute('class', 'enemy__arm');
       enemyArms.innerHTML = "<img src='img/enemy-weapon-".concat(random(enemyStyle), ".png' alt='enemy weapon'>");
-      enemyAvatar.appendChild(enemyHead);
-      enemyAvatar.appendChild(enemyBody);
-      enemyAvatar.appendChild(enemyLegs);
-      enemyAvatar.appendChild(enemyArms);
       enemySide.appendChild(enemyAvatar);
+      enemyAvatar.appendChild(enemyAvatarInner);
+      enemyAvatarInner.appendChild(enemyHead);
+      enemyAvatarInner.appendChild(enemyBody);
+      enemyAvatarInner.appendChild(enemyLegs);
+      enemyAvatarInner.appendChild(enemyArms);
     }
   }, {
     key: "setLevelUp",
@@ -725,6 +728,8 @@ function () {
       var playerSide = document.querySelector('.player-side');
       var playerAvatar = document.createElement('div');
       playerAvatar.setAttribute('class', 'player__avatar avatar');
+      var playerAvatarInner = document.createElement('div');
+      playerAvatarInner.setAttribute('class', 'player__avatar--inner avatar__inner');
       var playerHead = document.createElement('div');
       playerHead.setAttribute('class', 'avatar__head');
       playerHead.innerHTML = '<img src=\'img/player-head.png\' alt=\'player head\'>';
@@ -737,11 +742,12 @@ function () {
       var playerArms = document.createElement('div');
       playerArms.setAttribute('class', 'avatar__arm');
       playerArms.innerHTML = '<img src=\'img/player-weapon.png\' alt=\'player weapon\'>';
-      playerAvatar.appendChild(playerHead);
-      playerAvatar.appendChild(playerBody);
-      playerAvatar.appendChild(playerLegs);
-      playerAvatar.appendChild(playerArms);
       playerSide.appendChild(playerAvatar);
+      playerAvatar.appendChild(playerAvatarInner);
+      playerAvatarInner.appendChild(playerHead);
+      playerAvatarInner.appendChild(playerBody);
+      playerAvatarInner.appendChild(playerLegs);
+      playerAvatarInner.appendChild(playerArms);
     }
   }, {
     key: "renderPlayerAbilities",
@@ -858,7 +864,7 @@ function () {
         return arr[Math.floor(Math.random() * arr.length)];
       }
 
-      var vocabulary = ['корова', 'молоко', 'золото'];
+      var vocabulary = ['корова', 'молоко', 'золото', 'автобус', 'багаж', 'батон', 'викторина', 'выгода', 'двадцать', 'ежевика', 'железо', 'помидор', 'заря', 'рисунок'];
       var answer = random(vocabulary);
       var taskChar = answer.split('');
       taskChar[Math.floor(Math.random() * taskChar.length)] = '..';
@@ -881,6 +887,8 @@ function () {
       form.addEventListener('submit', function (e) {
         e.preventDefault();
         $('#taskModal').modal('hide');
+        console.log(input.value);
+        console.log(answer);
 
         if (input.value === answer) {
           _this.gameplay.takeHeal();
