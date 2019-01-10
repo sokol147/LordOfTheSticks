@@ -157,12 +157,20 @@ label{
 }
 .enemy-side{
   width: 40%;
+  display: flex;
+  flex-direction: column;
 }
 
 .battleground__info{
   padding: 1rem;
   display: flex;
   flex-direction: column;
+}
+
+.enemy__avatar{
+  flex: 1;
+  justify-content: flex-end;
+  padding-bottom: 128px;
 }
 
 .enemy__name{
@@ -208,15 +216,21 @@ label{
 
 .player__avatar{
   flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+}
+.avatar__inner{
+  position: relative;
 }
 
 .avatar__body{
-  margin-left: -60px;
+  margin-left: -77px;
 }
 
 .avatar__arm{
   position: absolute;
-  right: 16%;
+  left: 100px;
   top: 14%;
 }
 
@@ -249,12 +263,12 @@ label{
 }
 
 .enemy__body{
-  margin-right: -60px;
+  margin-left: -36px;
 }
 
 .enemy__arm{
   position: absolute;
-  left: 16%;
+  right: 160px;
   top: 14%;
 }
 
