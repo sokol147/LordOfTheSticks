@@ -566,11 +566,10 @@ function () {
 
       var attackTasks = [{
         name: 'Математика',
-        id: 'taskMath' // ,{
-        //   name: 'Вставить нужное число',
-        //   id: 'taskInsertNumber'
-        // }
-
+        id: 'taskMath'
+      }, {
+        name: 'Вставить необходимый знак',
+        id: 'taskInsertOperator'
       }];
       var modalBody = document.querySelector('#modal-abilities__body');
       modalBody.innerHTML = '';
@@ -583,13 +582,36 @@ function () {
         button.setAttribute('data-target', '#taskModal');
         button.setAttribute('id', "".concat(attackTasks[i].id));
         button.innerHTML = "".concat(attackTasks[i].name);
-        button.addEventListener('click', function (e) {
-          $('#abilitiesModal').modal('hide');
 
-          _this2.tasks.taskMath();
-        });
+        switch (i) {
+          case 0:
+            button.addEventListener('click', function () {
+              $('#abilitiesModal').modal('hide');
+
+              _this2.tasks.taskMath();
+            });
+            break;
+
+          case 1:
+            button.addEventListener('click', function () {
+              $('#abilitiesModal').modal('hide');
+
+              _this2.tasks.taskInsertOperator();
+            });
+
+          default:
+        }
+
         modalBody.appendChild(button);
       }
+    }
+  }, {
+    key: "hideAbilitiesModal",
+    value: function hideAbilitiesModal() {
+      var button = document.querySelector('.btn--abilities');
+      button.addEventListener('click', function () {
+        $('#abilitiesModal').modal('hide');
+      });
     }
   }, {
     key: "renderHealAbilities",
@@ -599,6 +621,9 @@ function () {
       var healTasks = [{
         name: 'Русский язык',
         id: 'taskRusLang'
+      }, {
+        name: 'Столицы',
+        id: 'taskCapital'
       }];
       var modalBody = document.querySelector('#modal-abilities__body');
       modalBody.innerHTML = '';
@@ -611,11 +636,27 @@ function () {
         button.setAttribute('data-target', '#taskModal');
         button.setAttribute('id', "".concat(healTasks[i].id));
         button.innerHTML = "".concat(healTasks[i].name);
-        button.addEventListener('click', function (e) {
-          $('#abilitiesModal').modal('hide');
 
-          _this3.tasks.taskRusLang();
-        });
+        switch (i) {
+          case 0:
+            button.addEventListener('click', function () {
+              $('#abilitiesModal').modal('hide');
+
+              _this3.tasks.taskRusLang();
+            });
+            break;
+
+          case 1:
+            button.addEventListener('click', function () {
+              $('#abilitiesModal').modal('hide');
+
+              _this3.tasks.taskCapital();
+            });
+            break;
+
+          default:
+        }
+
         modalBody.appendChild(button);
       }
     }
@@ -887,8 +928,6 @@ function () {
       form.addEventListener('submit', function (e) {
         e.preventDefault();
         $('#taskModal').modal('hide');
-        console.log(input.value);
-        console.log(answer);
 
         if (input.value === answer) {
           _this.gameplay.takeHeal();
@@ -898,9 +937,76 @@ function () {
       });
     }
   }, {
+    key: "taskCapital",
+    value: function taskCapital() {
+      var _this2 = this;
+
+      function random(arr) {
+        return arr[Math.floor(Math.random() * arr.length)];
+      }
+
+      var countries = [{
+        flag: 'austria',
+        capital: 'вена'
+      }, {
+        flag: 'belarus',
+        capital: 'минск'
+      }, {
+        flag: 'ireland',
+        capital: 'дублин'
+      }, {
+        flag: 'lithuania',
+        capital: 'вильнюс'
+      }, {
+        flag: 'monako',
+        capital: 'монако'
+      }, {
+        flag: 'netherlands',
+        capital: 'амстердам'
+      }, {
+        flag: 'portugal',
+        capital: 'лисабон'
+      }, {
+        flag: 'singapore',
+        capital: 'сингапур'
+      }, {
+        flag: 'vietnam',
+        capital: 'ханои'
+      }];
+      var task = random(countries);
+      var flag = task.flag;
+      var answer = task.capital;
+      var modalBody = document.querySelector('#modal-task__body');
+      modalBody.innerHTML = '';
+      var modalTitle = document.createElement('span');
+      modalTitle.innerHTML = 'Напишите сталицу по флагу страны';
+      var form = document.createElement('form');
+      form.setAttribute('class', 'modal-task__form');
+      var exampleImage = document.createElement('img');
+      exampleImage.setAttribute('class', 'task__img');
+      exampleImage.setAttribute('src', "img/capitals/".concat(flag, ".webp"));
+      exampleImage.setAttribute('alt', "".concat(flag));
+      var input = document.createElement('input');
+      input.setAttribute('class', 'modal-task__input');
+      modalBody.appendChild(modalTitle);
+      modalBody.appendChild(form);
+      form.appendChild(exampleImage);
+      form.appendChild(input);
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        $('#taskModal').modal('hide');
+
+        if (input.value === answer) {
+          _this2.gameplay.takeHeal();
+        } else {
+          _this2.gameplay.takeDamage();
+        }
+      });
+    }
+  }, {
     key: "taskMath",
     value: function taskMath() {
-      var _this2 = this;
+      var _this3 = this;
 
       function random(arr) {
         return arr[Math.floor(Math.random() * arr.length)];
@@ -930,9 +1036,51 @@ function () {
         $('#taskModal').modal('hide');
 
         if (+input.value === answer) {
-          _this2.gameplay.takeDamageFromPlayer();
+          _this3.gameplay.takeDamageFromPlayer();
         } else {
-          _this2.gameplay.takeDamage();
+          _this3.gameplay.takeDamage();
+        }
+      });
+    }
+  }, {
+    key: "taskInsertOperator",
+    value: function taskInsertOperator() {
+      var _this4 = this;
+
+      function random(arr) {
+        return arr[Math.floor(Math.random() * arr.length)];
+      }
+
+      var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+      var operators = ['+', '-', '*'];
+      var firstNumber = random(numbers);
+      var lastNumber = random(numbers);
+      var operator = random(operators);
+      var answer = eval("".concat(firstNumber, " ").concat(operator, " ").concat(lastNumber));
+      var example = "".concat(firstNumber, " .. ").concat(lastNumber, " = ").concat(answer);
+      var modalBody = document.querySelector('#modal-task__body');
+      modalBody.innerHTML = '';
+      var modalTitle = document.createElement('span');
+      modalTitle.innerHTML = 'Введите необходимый знак';
+      var form = document.createElement('form');
+      form.setAttribute('class', 'modal-task__form');
+      var exampleField = document.createElement('span');
+      exampleField.setAttribute('class', 'task__example');
+      exampleField.innerHTML = example;
+      var input = document.createElement('input');
+      input.setAttribute('class', 'modal-task__input');
+      modalBody.appendChild(modalTitle);
+      modalBody.appendChild(form);
+      form.appendChild(exampleField);
+      form.appendChild(input);
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        $('#taskModal').modal('hide');
+
+        if (input.value === operator) {
+          _this4.gameplay.takeDamageFromPlayer();
+        } else {
+          _this4.gameplay.takeDamage();
         }
       });
     }
