@@ -442,9 +442,6 @@ function () {
       name: 'Вася',
       score: 45
     }, {
-      name: 'Коля',
-      score: 12
-    }, {
       name: 'Миша',
       score: 4
     }, {
@@ -475,21 +472,37 @@ function () {
         name: playerName,
         score: +level - 1
       };
-      this.leaderboardArray.push(resultObj);
+      var scoreFromLocal = JSON.parse(localStorage.getItem("highscores"));
 
-      var sortedLeader = _.reverse(_.sortBy(this.leaderboardArray, [function (o) {
-        return o.score;
-      }]));
+      if (scoreFromLocal === null) {
+        this.leaderboardArray.push(resultObj);
 
+        var sortedScore = _.reverse(_.sortBy(this.leaderboardArray, [function (o) {
+          return o.score;
+        }]));
+
+        localStorage.setItem("highscores", JSON.stringify(sortedScore));
+      } else {
+        scoreFromLocal.push(resultObj);
+
+        var _sortedScore = _.reverse(_.sortBy(scoreFromLocal, [function (o) {
+          return o.score;
+        }]));
+
+        localStorage.setItem("highscores", JSON.stringify(_sortedScore));
+      }
+
+      var infoForTable = JSON.parse(localStorage.getItem("highscores"));
+      console.log(infoForTable);
       var leaderboardTable = document.querySelector('#leaderboard__table');
 
-      for (var i = 0; i < this.leaderboardArray.length; i++) {
+      for (var i = 0; i < infoForTable.length; i++) {
         var tr = document.createElement('tr');
         var tableName = document.createElement('td');
-        tableName.innerHTML = sortedLeader[i].name;
+        tableName.innerHTML = infoForTable[i].name;
         var tableScore = document.createElement('td');
         tableScore.setAttribute('class', 'leaderboard__score');
-        tableScore.innerHTML = sortedLeader[i].score;
+        tableScore.innerHTML = infoForTable[i].score;
         tr.appendChild(tableName);
         tr.appendChild(tableScore);
         leaderboardTable.appendChild(tr);
@@ -723,14 +736,11 @@ function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _enemy__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./enemy */ "./src/components/enemy.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-
 
 var Player =
 /*#__PURE__*/
@@ -741,7 +751,6 @@ function () {
     this.name = name;
     this.healthPoints = 100;
     this.attack = 20;
-    this.enemy = new _enemy__WEBPACK_IMPORTED_MODULE_0__["default"]();
   }
 
   _createClass(Player, [{
